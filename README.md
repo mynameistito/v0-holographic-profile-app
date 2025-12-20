@@ -12,9 +12,50 @@ Any changes you make to your deployed app will be automatically pushed to this r
 
 ## Deployment
 
+### Vercel
+
 Your project is live at:
 
 **[https://vercel.com/mynameistitos-projects/v0-holographic-profile-app](https://vercel.com/mynameistitos-projects/v0-holographic-profile-app)**
+
+### Cloudflare Workers
+
+This project is configured to deploy to Cloudflare Workers using [OpenNext.js Cloudflare adapter](https://opennext.js.org/cloudflare).
+
+#### Prerequisites
+
+- Cloudflare account
+- Wrangler CLI (included as dev dependency)
+
+#### Build and Deploy
+
+1. **Build for Cloudflare:**
+   ```bash
+   pnpm build:cloudflare
+   ```
+
+2. **Preview locally:**
+   ```bash
+   pnpm preview
+   ```
+
+3. **Deploy to Cloudflare:**
+   ```bash
+   pnpm deploy
+   ```
+
+   Or deploy manually:
+   ```bash
+   pnpm build:cloudflare
+   wrangler deploy
+   ```
+
+#### Configuration
+
+- `wrangler.jsonc` - Cloudflare Workers configuration
+- `open-next.config.ts` - OpenNext.js Cloudflare adapter settings
+
+For advanced features like caching (KV, R2, D1), see the [OpenNext.js Cloudflare documentation](https://opennext.js.org/cloudflare).
 
 ## Build your app
 

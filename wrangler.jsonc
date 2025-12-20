@@ -1,0 +1,23 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "v0-holographic-profile-app",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2025-01-06",
+  "compatibility_flags": ["nodejs_compat"],
+
+  // Static assets binding (required)
+  "assets": {
+    "binding": "ASSETS",
+    "directory": ".open-next/assets"
+  },
+
+  // Image optimization binding (optional but recommended)
+  "images": {
+    "binding": "IMAGES"
+  },
+
+  // Observability for monitoring and logs
+  "observability": {
+    "enabled": true
+  }
+}

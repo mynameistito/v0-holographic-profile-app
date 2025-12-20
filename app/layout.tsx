@@ -34,11 +34,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Only load Vercel Analytics on Vercel (not on Cloudflare)
+  const isVercel = process.env.VERCEL === "1";
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={"font-sans antialiased"} suppressHydrationWarning>
         {children}
-        <Analytics />
+        {!!isVercel && <Analytics />}
       </body>
     </html>
   );
