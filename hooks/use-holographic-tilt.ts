@@ -9,10 +9,10 @@ import type { MousePosition, TiltState } from "@/types/holographic";
 export function useHolographicTilt() {
   const [tilt, setTilt] = useState<TiltState>({ x: 0, y: 0 });
   const [mousePos, setMousePos] = useState<MousePosition>({ x: 0.5, y: 0.5 });
-  const cardRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLElement>(null);
 
   const handleMouseMove = useCallback(
-    (event: React.MouseEvent<HTMLDivElement>) => {
+    (event: React.MouseEvent<HTMLElement>) => {
       if (!cardRef.current) {
         return;
       }

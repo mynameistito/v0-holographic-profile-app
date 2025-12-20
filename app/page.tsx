@@ -1,11 +1,9 @@
 "use client";
 
-import { Download } from "lucide-react";
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { HolographicCard } from "@/components/holographic-card";
 import { ImageUpload } from "@/components/image-upload";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { UploadPlaceholder } from "@/components/upload-placeholder";
 import { DEFAULT_HOLOGRAPHIC_CONFIG } from "@/constants/holographic";
@@ -13,43 +11,9 @@ import { DEFAULT_HOLOGRAPHIC_CONFIG } from "@/constants/holographic";
 export default function HolographicCardApp() {
   const [image, setImage] = useState<string | null>(null);
   const [cardTitle, setCardTitle] = useState("Profile Card");
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [isDownloading, setIsDownloading] = useState(false);
-
-  const handleDownload = async () => {
-    if (!(cardRef.current && image)) {
-      return;
-    }
-
-    setIsDownloading(true);
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 500));
-
-      const html2canvas = (await import("html2canvas")).default;
-
-      const canvas = await html2canvas(cardRef.current, {
-        backgroundColor: "#0f172a",
-        scale: 2,
-        logging: false,
-        useCORS: true,
-        allowTaint: false,
-        width: cardRef.current.offsetWidth,
-        height: cardRef.current.offsetHeight,
-      });
-
-      const link = document.createElement("a");
-      link.download = `${cardTitle.toLowerCase().replace(/\s+/g, "-")}-holographic-card.png`;
-      link.href = canvas.toDataURL("image/png", 1.0);
-      link.click();
-    } catch (error) {
-      console.error("Failed to download card:", error);
-    } finally {
-      setIsDownloading(false);
-    }
-  };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-4">
+    <div className="min-h-screen bg-linear-to-br from-slate-900 via-purple-900 to-slate-900 p-4">
       <Image
         alt=""
         className="hidden"
@@ -101,34 +65,17 @@ export default function HolographicCardApp() {
               />
             </div>
 
-            <div
-              className="flex min-h-[500px] items-center justify-center"
-              ref={cardRef}
-            >
+            <div className="flex min-h-[500px] items-center justify-center">
               {image ? (
                 <HolographicCard
                   config={DEFAULT_HOLOGRAPHIC_CONFIG}
                   image={image}
-                  isDownloading={isDownloading}
                   title={cardTitle}
                 />
               ) : (
                 <UploadPlaceholder />
               )}
             </div>
-
-            {!!image && (
-              <div className="flex justify-center">
-                <Button
-                  className="bg-purple-600 text-white hover:bg-purple-700"
-                  disabled={isDownloading}
-                  onClick={handleDownload}
-                >
-                  <Download className="mr-2 h-4 w-4" />
-                  {isDownloading ? "Downloading..." : "Download Card"}
-                </Button>
-              </div>
-            )}
           </CardContent>
         </Card>
       </div>

@@ -24,7 +24,7 @@ export function ImageUpload({ onImageUpload }: ImageUploadProps) {
   };
 
   return (
-    <div className="text-center">
+    <div className="flex justify-center">
       <input
         accept="image/*"
         className="hidden"
@@ -33,9 +33,8 @@ export function ImageUpload({ onImageUpload }: ImageUploadProps) {
         type="file"
       />
       <Button
-        className="border-slate-600 text-slate-900 hover:bg-slate-700"
+        className="bg-purple-600 text-white hover:bg-purple-700"
         onClick={() => fileInputRef.current?.click()}
-        variant="outline"
       >
         <Upload className="mr-2 h-4 w-4" />
         Upload Image

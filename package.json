@@ -8,7 +8,8 @@
     "dev": "next dev",
     "preview": "opennextjs-cloudflare preview",
     "deploy": "pnpm build:cloudflare && wrangler deploy",
-    "lint": "bunx ultracite fix && ultracite check",
+    "lint": "bunx ultracite fix && bunx ultracite check",
+    "ultracheck": "bunx ultracite fix && bunx ultracite check && tsc --noEmit",
     "start": "next start",
     "tsc": "tsc --noEmit"
   },
@@ -19,7 +20,7 @@
     "autoprefixer": "^10.4.23",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "html2canvas": "1.4.1",
+    "html2canvas-pro": "^1.6.1",
     "lucide-react": "^0.562.0",
     "next": "16.0.10",
     "next-themes": "^0.4.6",

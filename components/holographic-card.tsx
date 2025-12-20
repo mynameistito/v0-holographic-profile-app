@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { type Ref, useCallback } from "react";
 import { ANIMATION_CONFIG, CARD_DIMENSIONS } from "@/constants/holographic";
 import { useHolographicTilt } from "@/hooks/use-holographic-tilt";
 import type { HolographicConfig } from "@/types/holographic";
@@ -16,6 +17,7 @@ type HolographicCardProps = {
   config: HolographicConfig;
   title?: string;
   isDownloading?: boolean;
+  ref?: Ref<HTMLElement>;
 };
 
 export function HolographicCard({
@@ -23,6 +25,7 @@ export function HolographicCard({
   config,
   title = "Profile Card",
   isDownloading = false,
+  ref: forwardedRef,
 }: HolographicCardProps) {
   const { tilt, mousePos, cardRef, handleMouseMove, handleMouseLeave } =
     useHolographicTilt();
@@ -43,6 +46,25 @@ export function HolographicCard({
         transition: `transform ${ANIMATION_CONFIG.transitionDuration} ease-out`,
       };
 
+  // Combine refs: forward to both the forwardedRef and the internal cardRef
+  const refCallback = useCallback(
+    (node: HTMLElement | null) => {
+      // Handle forwarded ref
+      if (forwardedRef) {
+        if (typeof forwardedRef === "function") {
+          forwardedRef(node);
+        } else {
+          forwardedRef.current = node;
+        }
+      }
+      // Handle internal cardRef from hook (it's a RefObject, so just assign to current)
+      if (cardRef) {
+        cardRef.current = node;
+      }
+    },
+    [forwardedRef, cardRef]
+  );
+
   return (
     // biome-ignore lint/a11y/noNoninteractiveElementInteractions: Visual effect only
     <section
@@ -50,7 +72,7 @@ export function HolographicCard({
       className="relative cursor-pointer"
       onMouseLeave={handleMouseLeave}
       onMouseMove={handleMouseMove}
-      ref={cardRef}
+      ref={refCallback}
       style={cardTransform}
     >
       <div
@@ -81,6 +103,7 @@ export function HolographicCard({
           <Image
             alt="Profile"
             className={`w-${CARD_DIMENSIONS.imageSize / 4} h-${CARD_DIMENSIONS.imageSize / 4} relative z-10 mx-auto rounded-xl object-cover shadow-2xl`}
+            data-profile-image="true"
             height={256}
             src={image || "/placeholder.svg"}
             width={256}

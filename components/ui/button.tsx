@@ -1,6 +1,6 @@
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
-import * as React from "react";
+import type { ButtonHTMLAttributes, Ref } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -34,31 +34,37 @@ const buttonVariants = cva(
 );
 
 export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+  extends ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
+  ref?: Ref<HTMLButtonElement>;
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
-    if (asChild) {
-      return (
-        <Slot
-          className={cn(buttonVariants({ variant, size, className }))}
-          ref={ref as any}
-          {...(props as any)}
-        />
-      );
-    }
+function Button({
+  className,
+  variant,
+  size,
+  asChild = false,
+  ref,
+  ...props
+}: ButtonProps) {
+  if (asChild) {
     return (
-      <button
+      <Slot
         className={cn(buttonVariants({ variant, size, className }))}
-        ref={ref}
-        {...props}
+        // biome-ignore lint/suspicious/noExplicitAny: Type conflict between React 19 and Radix UI's React types
+        ref={ref as any}
+        {...(props as Record<string, unknown>)}
       />
     );
   }
-);
-Button.displayName = "Button";
+  return (
+    <button
+      className={cn(buttonVariants({ variant, size, className }))}
+      ref={ref}
+      {...props}
+    />
+  );
+}
 
 export { Button, buttonVariants };
