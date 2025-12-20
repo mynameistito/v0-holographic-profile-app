@@ -19,7 +19,7 @@ yarn-error.log*
 # env files
 .env*
 
-# vercel
+# vercel 
 .vercel
 
 # cloudflare
@@ -29,3 +29,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# temp
+.temp
