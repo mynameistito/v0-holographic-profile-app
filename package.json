@@ -5,8 +5,9 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
-    "lint": "eslint .",
-    "start": "next start"
+    "lint": "bunx ultracite fix && ultracite check",
+    "start": "next start",
+    "tsc": "tsc --noEmit"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -37,6 +38,7 @@
     "@radix-ui/react-toggle": "1.1.10",
     "@radix-ui/react-toggle-group": "1.1.11",
     "@radix-ui/react-tooltip": "1.2.8",
+    "@tailwindcss/postcss": "^4.1.18",
     "@vercel/analytics": "1.6.1",
     "autoprefixer": "^10.4.23",
     "class-variance-authority": "^0.7.1",
@@ -70,5 +72,11 @@
     "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3",
     "ultracite": "6.4.2"
+  },
+  "pnpm": {
+    "overrides": {
+      "@types/react": "^19.2.7",
+      "@types/react-dom": "^19.2.3"
+    }
   }
 }

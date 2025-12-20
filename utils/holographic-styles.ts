@@ -1,7 +1,10 @@
-import type { MousePosition, HolographicConfig } from "@/types/holographic"
+import type { HolographicConfig, MousePosition } from "@/types/holographic";
 
-export function createHolographicStyle(config: HolographicConfig, mousePos: MousePosition) {
-  const { hue, saturation, brightness, rotation, intensity } = config
+export function createHolographicStyle(
+  config: HolographicConfig,
+  mousePos: MousePosition
+) {
+  const { hue, saturation, brightness, rotation, intensity } = config;
 
   return {
     backgroundImage: `
@@ -23,7 +26,7 @@ export function createHolographicStyle(config: HolographicConfig, mousePos: Mous
     `,
     backgroundSize: "200% 200%, 100% 100%",
     opacity: intensity / 100,
-  }
+  };
 }
 
 export function createHolographicMask(mousePos: MousePosition) {
@@ -71,7 +74,7 @@ export function createHolographicMask(mousePos: MousePosition) {
       )
     `,
     mixBlendMode: "screen" as const,
-  }
+  };
 }
 
 export function createPrismaticEffect(mousePos: MousePosition) {
@@ -91,7 +94,7 @@ export function createPrismaticEffect(mousePos: MousePosition) {
     `,
     opacity: 0.6,
     mixBlendMode: "color-dodge" as const,
-  }
+  };
 }
 
 export function createTiledCodeMask(mousePos: MousePosition) {
@@ -156,5 +159,5 @@ export function createTiledCodeMask(mousePos: MousePosition) {
     WebkitMaskComposite: "source-in" as const,
     mixBlendMode: "screen" as const,
     opacity: 0.1,
-  }
+  };
 }
