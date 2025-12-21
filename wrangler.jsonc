@@ -10,14 +10,28 @@
     "binding": "ASSETS",
     "directory": ".open-next/assets"
   },
+  "observability": {
+    "logs": {
+      "enabled": true,
+      "head_sampling_rate": 0.1,
+      "persist": true,
+      "invocation_logs": true
+    },
+    "traces": {
+      "enabled": true,
+      "head_sampling_rate": 0.1,
+      "persist": true
+    }
+  },
+  "routes": [
+    {
+      "pattern": "holo-card.mynameistito.com/*",
+      "custom_domain": true
+    }
+  ],
 
   // Image optimization binding (optional but recommended)
   "images": {
     "binding": "IMAGES"
-  },
-
-  // Observability for monitoring and logs
-  "observability": {
-    "enabled": true
   }
 }
