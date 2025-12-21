@@ -4,7 +4,8 @@
   "main": ".open-next/worker.js",
   "compatibility_date": "2025-01-06",
   "compatibility_flags": ["nodejs_compat"],
-
+  "workers_dev": false,
+  "minify": true,
   // Static assets binding (required)
   "assets": {
     "binding": "ASSETS",
