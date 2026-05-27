@@ -2,7 +2,7 @@
 
 *Automatically synced with your [v0.app](https://v0.app) deployments*
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/mynameistitos-projects/v0-holographic-profile-app)
+[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-cloudflare-black?style=for-the-badge&logo=cloudflare)](https://holo-card.mynameistito.com/)
 [![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/yewZYO4kmv1)
 
 ## Overview
@@ -14,9 +14,7 @@ Any changes you make to your deployed app will be automatically pushed to this r
 
 ### Vercel
 
-Your project is live at:
 
-**[https://vercel.com/mynameistitos-projects/v0-holographic-profile-app](https://vercel.com/mynameistitos-projects/v0-holographic-profile-app)**
 
 ### Cloudflare Workers
 
